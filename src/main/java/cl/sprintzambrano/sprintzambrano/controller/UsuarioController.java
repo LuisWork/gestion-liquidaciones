@@ -48,16 +48,25 @@ public class UsuarioController {
         return "redirect:/login";
     }
 
-    @GetMapping("/{idUsuario}/editar")
-    public String mostrarFormularioEditarUsuario(@PathVariable int idUsuario, Model model){
-        Usuario usuarioParaEditar = objUsuarioService.buscarUsuarioPorId(idUsuario);
-        model.addAttribute("usuario", usuarioParaEditar);
+    @GetMapping("/{idUsuario}")
+    public String buscarUsuarioPorId(@PathVariable int idUsuario, Model model) { //se utiliza para capturar el valor del ID del usuario desde la URL y asignarlo a la variable idUsuario.
+        Usuario usuario = objUsuarioService.buscarUsuarioPorId(idUsuario); //Este método busca el usuario en la base de datos utilizando el ID proporcionado y devuelve un objeto Usuario
+        model.addAttribute("usuario", usuario); //se agrega este objeto Usuario al modelo con el nombre "usuario" usando el método addAttribute() del objeto model
+        return "redirect:/usuario";
+    }
+
+    // Método para mostrar el formulario de edición de un usuario por su ID
+    @PostMapping("/editar/{idUsuario}")
+    public String mostrarFormularioEditarUsuario(@PathVariable int idUsuario, Model model) {
+        model.addAttribute("usuario", objUsuarioService.buscarUsuarioPorId(idUsuario)); //llamo al método buscarUsuarioPorId(idUsuario) del servicio IUsuarioService para obtener el objeto Usuario que se desea editar.
         return "editarUsuario";
     }
 
-    @PostMapping("/{idUsuario}/editar")
-    public String actualizarUsuario(@PathVariable int idUsuario, @ModelAttribute Usuario usuario){
-        objUsuarioService.actualizarUsuario2(usuario);
+    // Método para actualizar un usuario
+    @PostMapping("/actualizar/{idUsuario}")
+    public String actualizarUsuario(@ModelAttribute Usuario usuario, @PathVariable int idUsuario) { //@ModelAttribute Usuario usuario y @PathVariable int idUsuario se utilizan para capturar el objeto Usuario con los datos actualizados y el ID del usuario desde la URL, respectivamente.
+        usuario.setFechaCreacion(LocalDateTime.now());
+        objUsuarioService.actualizarUsuario(usuario, idUsuario); //llamo al método actualizarUsuario(usuario, idUsuario) del servicio IUsuarioService, pasando el objeto Usuario actualizado y el ID del usuario para actualizar los datos en la base de datos.
         return "redirect:/usuario";
     }
 
