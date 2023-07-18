@@ -30,15 +30,15 @@ public class Usuario {
     @Column(name = "apellido_2", length = 100)
     private String apellido2;
 
-    @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_perfil", nullable = false) //se utiliza para especificar la columna de la tabla de la base de datos que se utilizará para establecer la relación.
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_perfil", nullable = false)
     private Perfil perfil;
 
     @Column(length = 100, nullable = false)
     private String email;
 
-    @Column(nullable = false)
-    private LocalDateTime fecha_creacion;
+    @Column(name = "fecha_creacion", nullable = false)
+    private LocalDateTime fechaCreacion;
 
     @Column
     private long telefono;
