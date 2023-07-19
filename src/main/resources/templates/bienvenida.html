@@ -21,7 +21,7 @@
     <!-- Container -->
     <div class="container">
         <!-- Inicio NavBar -->
-        <header th:include="~{../static/header.html}"></header>
+        <header th:include="~{../static/headerSession.html}"></header>
         <!-- Fin NavBar -->
         <!-- Inicio Bienvenida -->
         <section class="min-vh-100">
@@ -40,7 +40,7 @@
                     <button class="btn btn-dark btn-lg p-3" onclick="window.location.href='../usuario/crearUsuario';">
                         Crear Usuario
                     </button>
-                    <button class="btn btn-dark btn-lg p-3">
+                    <button class="btn btn-dark btn-lg p-3" onclick="window.location.href='../empleador/crearEmpleador';">
                         Crear Empleador
                     </button>
                     <button class="btn btn-dark btn-lg p-3">
@@ -56,7 +56,7 @@
                     <button class="btn btn-dark btn-lg p-3" onclick="window.location.href='/usuario';">
                         Ver y/o editar usuarios
                     </button>
-                    <button class="btn btn-dark btn-lg p-3">
+                    <button class="btn btn-dark btn-lg p-3" onclick="window.location.href='/empleador';">
                         Ver y/o editar empleador
                     </button>
                     <button class="btn btn-dark btn-lg p-3">
