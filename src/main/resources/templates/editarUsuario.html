@@ -31,14 +31,17 @@
         </div>
         <div class="row">
             <div class="col-6 m-auto">
-                <form class="mb-5" th:action="@{/usuario/editar/{idUsuario}(idUsuario=${usuario.getIdUsuario()})}" th:method="POST">
+                <form class="mb-5" th:action="@{/usuario/actualizar/{idUsuario}(idUsuario=${usuario.getIdUsuario()})}"
+                    th:method="post">
                     <div class="mb-3">
                         <label for="run" class="form-label">RUN</label>
-                        <input type="text" class="form-control" placeholder="Ingrese su run" name="run" required th:value="${usuario.getRun()}">
+                        <input type="text" class="form-control" placeholder="Ingrese su run" name="run" required
+                            th:value="${usuario.getRun()}">
                     </div>
                     <div class="mb-3">
                         <label for="nombre" class="form-label">Nombre</label>
-                        <input type="text" class="form-control" placeholder="Ingrese su Nombre" name="nombre" required th:value="${usuario.getNombre()}">
+                        <input type="text" class="form-control" placeholder="Ingrese su Nombre" name="nombre" required
+                            th:value="${usuario.getNombre()}">
                     </div>
                     <div class="mb-3">
                         <label for="apellido1" class="form-label">Apellido 1</label>
@@ -46,13 +49,19 @@
                             name="apellido1" required th:value="${usuario.getApellido1()}">
                     </div>
                     <div class="mb-3">
-                        <label for="apellido2" class="form-label">Opcional</label>
+                        <label for="apellido2" class="form-label">Apellido 2 (Opcional)</label>
                         <input type="text" class="form-control" placeholder="Ingrese su segundo Apellido"
                             name="apellido2" th:value="${usuario.getApellido2()}">
                     </div>
                     <div class="mb-3">
+                        <label for="telefono" class="form-label">Telefono</label>
+                        <input type="text" class="form-control" placeholder="Ingrese su Telefono" name="telefono"
+                            th:value="${usuario.getTelefono()}">
+                    </div>
+                    <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" placeholder="Ingrese su Email" name="email" required th:value="${usuario.getEmail()}">
+                        <input type="email" class="form-control" placeholder="Ingrese su Email" name="email" required
+                            th:value="${usuario.getEmail()}">
                     </div>
                     <div class="mb-3">
                         <label for="password" class="form-label">Contraseña</label>

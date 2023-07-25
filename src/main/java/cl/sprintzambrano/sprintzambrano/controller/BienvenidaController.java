@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class BienvenidaController {
-    @GetMapping("/bienvenida")
+    @GetMapping({"/bienvenida"})
     public String bienvenida(){
         return "bienvenida";
     }

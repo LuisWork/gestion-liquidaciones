@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Editar Empleador | Sprint 6</title>
+    <title>Editar Trabajador | Sprint 6</title>
     <!-- CSS de Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
@@ -26,56 +26,71 @@
         <!-- Inicio Crear Usuario -->
         <div class="row">
             <div class="col">
-                <h2 class="h2 text-center mt-5 mb-5">Editar Empleador</h2>
+                <h2 class="h2 text-center mt-5 mb-5">Editar Trabajador</h2>
             </div>
         </div>
         <div class="row">
             <div class="col-6 m-auto">
                 <form class="mb-5"
-                    th:action="@{/empleador/actualizar/{idEmpleador}(idEmpleador=${empleador.getIdEmpleador()})}"
+                    th:action="@{/trabajador/actualizar/{idTrabajador}(idTrabajador=${trabajador.getIdTrabajador()})}"
                     th:method="post">
                     <div class="mb-3">
                         <label for="run" class="form-label">RUN</label>
                         <input type="text" class="form-control" placeholder="Ingrese su run" name="run" required
-                            th:value="${empleador.getRun()}" disabled>
+                            th:value="${trabajador.getRun()}">
                     </div>
                     <div class="mb-3">
                         <label for="nombre" class="form-label">Nombre</label>
                         <input type="text" class="form-control" placeholder="Ingrese su Nombre" name="nombre" required
-                            th:value="${empleador.getNombre()}">
+                            th:value="${trabajador.getNombre()}">
                     </div>
                     <div class="mb-3">
                         <label for="apellido1" class="form-label">Apellido 1</label>
                         <input type="text" class="form-control" placeholder="Ingrese su primer Apellido"
-                            name="apellido1" required th:value="${empleador.getApellido1()}">
+                            name="apellido1" required th:value="${trabajador.getApellido1()}">
                     </div>
                     <div class="mb-3">
                         <label for="apellido2" class="form-label">Apellido 2 (Opcional)</label>
                         <input type="text" class="form-control" placeholder="Ingrese su segundo Apellido"
-                            name="apellido2" th:value="${empleador.getApellido2()}">
-                    </div>
-                    <div class="mb-3">
-                        <label for="nombre" class="form-label">Direccion</label>
-                        <input type="text" class="form-control" placeholder="Ingrese su Direccion" name="direccion"
-                            th:value="${empleador.getDireccion()}">
-                    </div>
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" placeholder="Ingrese su Email" name="email"
-                            th:value="${empleador.getEmail()}">
+                            name="apellido2" th:value="${trabajador.getApellido2()}">
                     </div>
                     <div class="mb-3">
                         <label for="telefono" class="form-label">Telefono</label>
-                        <input type="text" class="form-control" placeholder="Ingrese su telefono" name="telefono"
-                            th:value="${empleador.getTelefono()}">
+                        <input type="text" class="form-control" placeholder="Ingrese su Telefono" name="telefono"
+                            th:value="${trabajador.getTelefono()}">
                     </div>
                     <div class="mb-3">
-                        <label for="idUsuario" class="form-label">Seleccionar Usuario</label>
-                        <select class="form-control" id="idUsuario" name="idUsuario">
-                            <option th:each="usuario : ${usuarios}" th:value="${usuario.idUsuario}"
-                                th:text="${usuario.nombre + ' ' + usuario.apellido1}"
-                                th:selected="${usuario.idUsuario == empleador.usuario.idUsuario}">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" placeholder="Ingrese su Email" name="email" required
+                            th:value="${trabajador.getEmail()}">
+                    </div>
+                    <div class="mt-4 mb-3">
+                        <label for="idPrevision" class="form-label">AFP</label>
+                        <select class="form-control" id="idPrevision" name="idPrevision">
+                            <option th:each="prevision : ${prevision}" th:value="${prevision.idInstPrevision}"
+                                th:text="${prevision.descripcion}"
+                                th:selected="${prevision.idInstPrevision == trabajador.instPrevision.idInstPrevision}">
                             </option>
+                        </select>
+                    </div>
+                    <div class="mt-4 mb-3">
+                        <label for="idSalud" class="form-label">Institución de Salud</label>
+                        <select class="form-control" id="idSalud" name="idSalud">
+                            <option th:each="salud: ${salud}" th:value="${salud.idInstSalud}"
+                                th:text="${salud.descripcion}"
+                                th:selected="${salud.idInstSalud == trabajador.instSalud.idInstSalud}">
+                            </option>
+                        </select>
+                    </div>
+                    <div class="mt-4 mb-3">
+                        <label for="idEmpleador" class="form-label">Empleadores</label>
+                        <select class="form-control" id="idEmpleador" name="idEmpleador">
+                            <option th:each="empleador: ${empleador}" th:value="${empleador.idEmpleador}"
+                                th:text="${empleador.nombre + ' ' + empleador.apellido1}"
+                                th:th:selected="${trabajador.listaEmpleadores.contains(empleador)}">
+
+                            </option>
+
                         </select>
                     </div>
                     <div class="mb-3 mt-5">

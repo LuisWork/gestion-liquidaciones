@@ -39,9 +39,7 @@ public class Empleador {
     @Column
     private long telefono;
 
-    @ManyToMany
-    @JoinTable(name = "empl_trab", joinColumns = @JoinColumn(name = "id_empleador", nullable = false),
-            inverseJoinColumns = @JoinColumn(name = "id_trabajador", nullable = false))
+    @ManyToMany(mappedBy = "listaEmpleadores")
     private List<Trabajador> trabajadores;
 }
 

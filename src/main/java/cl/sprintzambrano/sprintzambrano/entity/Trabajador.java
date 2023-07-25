@@ -29,20 +29,23 @@ public class Trabajador {
     @Column(length = 100)
     private String email;
 
-    @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
     @JoinColumn(name = "id_inst_prevision", nullable = false)
     private InstitucionPrevision instPrevision;
 
-    @ManyToOne(optional = false, cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @ManyToOne(optional = false,fetch = FetchType.EAGER)
     @JoinColumn(name = "id_inst_salud", nullable = false)
     private InstitucionSalud instSalud;
 
     @Column(nullable = false)
     private long telefono;
 
-    @OneToMany
-    List<Liquidacion> listaTrabajadores;
+    @OneToMany(mappedBy = "trabajador")
+    List<Liquidacion> listaLiquidacion;
 
-    @ManyToMany(mappedBy = "trabajadores")
+    @ManyToMany
+    @JoinTable(name = "empl_trab",
+            joinColumns = @JoinColumn(name = "id_trabajador", nullable = false),
+            inverseJoinColumns = @JoinColumn(name = "id_empleador", nullable = false))
     private List<Empleador> listaEmpleadores;
 }

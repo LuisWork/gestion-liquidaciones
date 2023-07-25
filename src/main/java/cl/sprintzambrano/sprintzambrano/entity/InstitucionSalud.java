@@ -11,7 +11,7 @@ import java.util.List;
 public class InstitucionSalud {
     @Id
     @Column(name = "id_inst_salud", nullable = false)
-    private int idInsSalud;
+    private int idInstSalud;
 
     @Column(nullable = false, length = 100)
     private String descripcion;

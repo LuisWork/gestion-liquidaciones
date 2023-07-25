@@ -34,9 +34,6 @@ public class UsuarioRestController {
         return objUsuarioService.actualizarUsuario(usuarioActualizar, idUsuario);
     }
 
-    @DeleteMapping
-    public void eliminarUsuario(@RequestBody Usuario usuario) { objUsuarioService.eliminarUsuario(usuario); }
-
     @DeleteMapping("/{idUsuario}")
     public void eliminarUsuario2(@PathVariable int idUsuario) { objUsuarioService.eliminarUsuario2(idUsuario); }
 }

@@ -8,9 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
-
-
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Controller
@@ -24,13 +21,13 @@ public class EmpleadorController {
 
     @GetMapping
     public String listarEmpleadores(Model model){
-        List<Empleador> listaEmpleadores = objEmpleadorService.listarEmpleadores();
-        model.addAttribute("empleadores", listaEmpleadores);
+        List<Empleador> listarEmpleador = objEmpleadorService.listarEmpleadores();
+        model.addAttribute("empleadores", listarEmpleador);
         return "listarEmpleadores";
     }
 
     @GetMapping("/crearEmpleador")
-    public String mostrarFormularioCrearEmpleador(Model model){
+    public String mostrarFormCrearEmpleador(Model model){
         List<Usuario> usuarios = objUsuarioService.listarUsuarios();
         model.addAttribute("usuarios", usuarios);
         model.addAttribute("empleador", new Empleador());
@@ -67,16 +64,9 @@ public class EmpleadorController {
         return "redirect:/empleador";
     }
 
-    @GetMapping("/{idEmpleador}/eliminar")
-    public String mostrarEliminarEmpleador(@PathVariable int idEmpleador, Model model){
-        Empleador empleadorEliminar = objEmpleadorService.buscarEmpleadorPorId(idEmpleador);
-        model.addAttribute("empleador", empleadorEliminar);
-        return "eliminarEmpleador";
-    }
-
     @PostMapping("/eliminar/{idEmpleador}")
     public String eliminarEmpleadorPorId(@PathVariable int idEmpleador) {
-        objEmpleadorService.eliminarEmpleador2(idEmpleador);
+        objEmpleadorService.eliminarEmpleador(idEmpleador);
         return "redirect:/empleador";
     }
 }
