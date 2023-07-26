@@ -1,5 +1,6 @@
 package cl.sprintzambrano.sprintzambrano.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -40,9 +41,11 @@ public class Trabajador {
     @Column(nullable = false)
     private long telefono;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "trabajador")
     List<Liquidacion> listaLiquidacion;
 
+    @JsonIgnore
     @ManyToMany
     @JoinTable(name = "empl_trab",
             joinColumns = @JoinColumn(name = "id_trabajador", nullable = false),

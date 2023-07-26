@@ -1,5 +1,6 @@
 package cl.sprintzambrano.sprintzambrano.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -16,6 +17,7 @@ public class Liquidacion {
 
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     @JoinColumn(name = "id_trabajador", nullable = false)
+    @JsonIgnore
     private Trabajador trabajador;
 
     @Column(nullable = false)
@@ -27,6 +29,7 @@ public class Liquidacion {
     @Column(name = "sueldo_liquido", nullable = false)
     private int sueldoLiquido;
 
+    @JsonIgnore
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     @JoinColumn(name = "id_inst_salud", nullable = false)
     private InstitucionSalud idInstSalud;
@@ -34,12 +37,13 @@ public class Liquidacion {
     @Column(name = "monto_inst_salud", nullable = false)
     private int montoInstSalud;
 
+    @JsonIgnore
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     @JoinColumn(name = "id_inst_previsional", nullable = false)
     private InstitucionPrevision idInstPrevision;
 
     @Column(name = "monto_inst_previsional", nullable = false)
-    private int montoInsPrevisional;
+    private int montoInstPrevision;
 
     @Column(name = "total_descuento", nullable = false)
     private int totalDescuento;

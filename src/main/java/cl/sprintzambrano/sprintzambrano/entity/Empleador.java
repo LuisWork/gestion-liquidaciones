@@ -1,5 +1,6 @@
 package cl.sprintzambrano.sprintzambrano.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -32,6 +33,7 @@ public class Empleador {
     @Column(length = 100)
     private String email;
 
+    @JsonIgnore
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     @JoinColumn(name = "id_usuario", nullable = false)
     private Usuario usuario;
@@ -40,6 +42,7 @@ public class Empleador {
     private long telefono;
 
     @ManyToMany(mappedBy = "listaEmpleadores")
+    @JsonIgnore
     private List<Trabajador> trabajadores;
 }
 

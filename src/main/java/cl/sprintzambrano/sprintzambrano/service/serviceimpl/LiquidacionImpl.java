@@ -22,25 +22,7 @@ public class LiquidacionImpl implements ILiquidacionService {
     }
 
     @Override
-    @Transactional
     public Liquidacion crearLiquidacion(Liquidacion liquidacion) {
-        int sueldoImponible = liquidacion.getSueldoImponible();
-        InstitucionPrevision afpTrabajador = liquidacion.getIdInstPrevision();
-        double porcentajeAFP = afpTrabajador.getPorcDcto();
-        int montoAFP = (int) (sueldoImponible * (porcentajeAFP / 100.0));
-        InstitucionSalud saludTrabajador = liquidacion.getIdInstSalud();
-        double porcentajeSalud = saludTrabajador.getPorcDcto();
-        int montoSalud = (int) (sueldoImponible * (porcentajeSalud / 100.0));
-        int totalDescuento = montoAFP + montoSalud;
-        int anticipo = liquidacion.getAnticipo();
-        int totalHaberes = sueldoImponible;
-        int sueldoLiquido = totalHaberes - totalDescuento - anticipo;
-        liquidacion.setMontoInstSalud(montoSalud);
-        liquidacion.setMontoInsPrevisional(montoAFP);
-        liquidacion.setTotalDescuento(totalDescuento);
-        liquidacion.setTotalHaberes(totalHaberes);
-        liquidacion.setAnticipo(anticipo);
-        liquidacion.setSueldoLiquido(sueldoLiquido);
         return objLiquidacionRepo.save(liquidacion);
     }
 
@@ -54,13 +36,12 @@ public class LiquidacionImpl implements ILiquidacionService {
     public Liquidacion actualizarLiquidacion(Liquidacion liquidacionActualizar, long idLiquidacion) {
         Liquidacion liquidacion = objLiquidacionRepo.findById(idLiquidacion).orElseThrow(() -> new NoSuchElementException("Liquidación no encontrada"));
         liquidacion.setTrabajador(liquidacionActualizar.getTrabajador());
-        liquidacion.setPeriodo(liquidacionActualizar.getPeriodo());
         liquidacion.setSueldoImponible(liquidacionActualizar.getSueldoImponible());
         liquidacion.setSueldoLiquido(liquidacionActualizar.getSueldoLiquido());
         liquidacion.setIdInstSalud(liquidacionActualizar.getIdInstSalud());
         liquidacion.setMontoInstSalud(liquidacionActualizar.getMontoInstSalud());
         liquidacion.setIdInstPrevision(liquidacionActualizar.getIdInstPrevision());
-        liquidacion.setMontoInsPrevisional(liquidacionActualizar.getMontoInsPrevisional());
+        liquidacion.setMontoInstPrevision(liquidacionActualizar.getMontoInstPrevision());
         liquidacion.setTotalDescuento(liquidacionActualizar.getTotalDescuento());
         liquidacion.setTotalHaberes(liquidacionActualizar.getTotalHaberes());
         liquidacion.setAnticipo(liquidacionActualizar.getAnticipo());

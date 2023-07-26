@@ -1,97 +1,185 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org" lang="es">
-<html lang="es">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Editar Liquidacion | Sprint 6</title>
-    <!-- CSS de Bootstrap 5 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-    <!-- CSS Personalizado -->
-    <link rel="stylesheet" href="../static/css/styles.css">
-    <!-- Font Awesome -->
-    <link href="fontawesome/css/fontawesome.css" rel="stylesheet">
-    <link href="fontawesome/css/brands.css" rel="stylesheet">
-    <link href="fontawesome/css/solid.css" rel="stylesheet">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Editar Liquidacion | Sprint 6</title>
+  <!-- CSS de Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  <!-- CSS Personalizado -->
+  <link rel="stylesheet" href="../static/css/styles.css">
+  <!-- Font Awesome -->
+  <link href="fontawesome/css/fontawesome.css" rel="stylesheet">
+  <link href="fontawesome/css/brands.css" rel="stylesheet">
+  <link href="fontawesome/css/solid.css" rel="stylesheet">
 </head>
 
 <body>
-    <!-- Container -->
-    <div class="container">
-        <!-- Inicio NavBar -->
-        <header th:include="~{../static/headerSession.html}"></header>
-        <!-- Fin NavBar -->
-        <!-- Inicio Editar Liquidaciones -->
-        <div class="row">
-            <div class="col">
-                <h2 class="h2 text-center mt-5 mb-5">Editar Liquidacion</h2>
-            </div>
+  <!-- Container -->
+  <div class="container">
+    <!-- Inicio NavBar -->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/">Logo</a>
         </div>
-        <div class="row">
-            <div class="col-6 m-auto">
-                <form class="mb-5" th:action="@{/liquidacion/actualizar/{idLiquidacion}(idTrabajador=${trabajador.getIdTrabajador})}" th:method="post">
-                    <div class="mb-3">
-                        <label for="idTrabajador">Trabajador</label>
-                        <select class="form-control" id="idTrabajador" name="idTrabajador">
-                            <option th:each="trabajador: ${trabajador}" th:value="${trabajador.idTrabajador}"
-                                th:text="${trabajador.nombre + ' ' + trabajador.apellido1}">
-                            </option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="periodo" class="form-label">Periodo</label>
-                        <input type="text" class="form-control" name="periodo" id="periodo">
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label" for="sueldoImponible">Sueldo Imponible </label>
-                        <input type="number" class="form-control" placeholder="Ingrese su sueldo imponible" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="idInstSalud" class="form-label">Inst de Salud</label>
-                        <select class="form-control" id="institucionSalud" name="idInstSalud">
-                            <option th:each="salud: ${salud}" th:value="${salud.idInstSalud}" th:text="${salud.descripcion}"></option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="" class="form-label">Monto Salud (Sueldo Imponible * % Fonasa)</label>
-                        <input type="text" class="form-control" placeholder="Sueldo Imponible * % Fonasa" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="idInstPrevision" class="form-label">Inst de Salud (AFP del trabajador seleccionado)</label>
-                        <select class="form-control" id="institucionPrevisional" name="idInstPrevision">
-                            <option th:each="prevision: ${prevision}" th:value="${prevision.idInstPrevision}" th:text="${prevision.descripcion}"></option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="" class="form-label">Monto AFP (Sueldo Imponible * % AFP Seleccionada)</label>
-                        <input type="text" class="form-control" placeholder="Sueldo Imponible * % AFP Seleccionada" required >
-                    </div>
-                    <div class="mb-3">
-                        <label for="" class="form-label">Total Descuentos (Monto de Salud + Monto AFP)</label>
-                        <input type="text" class="form-control" placeholder="Monto de Salud + Monto AFP" name="totalDescuento" required >
-                    </div>
-                    <div class="mb-3">
-                        <label for="" class="form-label">Total Haberes (Igual a sueldo imponible)</label>
-                        <input type="text" class="form-control" placeholder="Igual a sueldo imponible" name="totalHaberes" required >
-                    </div>
-                    <div class="mb-3">
-                        <label for="" class="form-label">Anticipo</label>
-                        <input type="text" class="form-control" placeholder="Ingrese el anticipo" name="anticipo" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="" class="form-label">Sueldo Liquido (Total Haberes - Total Descuentos - Anticipo)</label>
-                        <input type="text" class="form-control" placeholder="Total Haberes - Total Descuentos - Anticipo" name="sueldoLiquido" required >
-                    </div>
-                    <div class="mb-3 mt-5">
-                        <input type="submit" class="btn btn-lg btn-dark" value="Registrar">
-                    </div>
-                </form>
-        
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse pe-5" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="/bienvenida">Inicio</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                Usuario
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="/usuario/crearUsuario">Agregar usuario</a></li>
+                <li><a class="dropdown-item" href="/usuario">Ver usuarios</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                Empleador
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="/empleador/crearEmpleador">Agregar empleador</a></li>
+                <li><a class="dropdown-item" href="/empleador">Ver empleadores</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                Trabajador
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="/trabajador/crearTrabajador">Agregar trabajador</a></li>
+                <li><a class="dropdown-item" href="/trabajador">Ver trabajadores</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                Liquidación
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="/liquidacion/crearLiquidacion">Nueva liquidación</a></li>
+                <li><a class="dropdown-item" href="/liquidacion">Ver liquidaciones</a></li>
+              </ul>
+            </li>
+          </ul>
+          <form class="d-flex" action="/login">
+            <button class="btn btn-outline-success" type="submit">
+              <span class="btn-text">Cerrar sesión</span>
+            </button>
+          </form>
+
+        </div>
+      </div>
+    </nav>
+    <!-- Fin NavBar -->
+    <!-- Inicio Editar Liquidaciones -->
+    <div class="row">
+      <div class="col">
+        <h2 class="h2 text-center mt-5 mb-5">Editar Liquidacion</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6 m-auto">
+        <form class="mb-5"
+          th:action="@{/liquidacion/actualizar/{idLiquidacion}(idLiquidacion=${liquidacion.getIdLiquidacion()})}"
+          th:method="post">
+          <div class="mb-3">
+            <label for="idTrabajador">Trabajador</label>
+            <select class="form-control" id="idTrabajador" name="idTrabajador">
+              <option th:each="trabajador: ${trabajador}" th:value="${trabajador.idTrabajador}"
+                th:text="${trabajador.nombre + ' ' + trabajador.apellido1}"
+                th:selected="${trabajador.idTrabajador == liquidacion.trabajador.idTrabajador}">
+              </option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="periodo" class="form-label">Periodo</label>
+            <input type="text" class="form-control" name="periodo" id="periodo" th:value="${liquidacion.getPeriodo()}">
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="sueldoImponible">Sueldo Imponible </label>
+            <input type="number" class="form-control" placeholder="Ingrese su sueldo imponible"
+              th:value="${liquidacion.getSueldoImponible()}" name="sueldoImponible" id="sueldoImponible" required>
+          </div>
+          <div class="mb-3">
+            <label for="idInstSalud" class="form-label">Inst de Salud</label>
+            <select class="form-control" id="idInstSalud" name="idInstSalud">
+              <option th:each="salud : ${salud}" th:value="${salud.idInstSalud}" th:text="${salud.descripcion}">
+              </option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="montoInstSalud" class="form-label">Monto Salud (Sueldo Imponible * % Fonasa)</label>
+            <input type="text" class="form-control" placeholder="Sueldo Imponible * % Fonasa"
+              th:value="${liquidacion.getMontoInstSalud()}" name="montoInstSalud" id="montoInstSalud" required>
+          </div>
+          <div class="mb-3">
+            <label for="idInstPrevision" class="form-label">Inst de Salud (AFP del trabajador
+              seleccionado)</label>
+            <select class="form-control" id="institucionPrevisional" name="idInstPrevision">
+              <option th:each="prevision: ${prevision}" th:value="${prevision.idInstPrevision}"
+                th:text="${prevision.descripcion}"
+                th:selected="${prevision.idInstPrevision == prevision?.idInstPrevision}"></option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="montoInstPrevision" class="form-label">Monto AFP (Sueldo Imponible * % AFP
+              Seleccionada)</label>
+            <input type="text" class="form-control" placeholder="Sueldo Imponible * % AFP Seleccionada"
+              th:value="${liquidacion.getMontoInstPrevision()}" name="montoInstPrevision" id="montoInstPrevision"
+              required>
+          </div>
+          <div class="mb-3">
+            <label for="totalDescuento" class="form-label">Total Descuentos (Monto de Salud + Monto
+              AFP)</label>
+            <input type="text" class="form-control" placeholder="Monto de Salud + Monto AFP" name="totalDescuento"
+              th:value="${liquidacion.getTotalDescuento()}" id="totalDescuento" required>
+          </div>
+          <div class="mb-3">
+            <label for="totalHaberes" class="form-label">Total Haberes (Igual a sueldo imponible)</label>
+            <input type="text" class="form-control" placeholder="Igual a sueldo imponible" name="totalHaberes"
+              th:value="${liquidacion.getTotalHaberes()}" id="totalHaberes" required>
+          </div>
+          <div class="mb-3">
+            <label for="anticipo" class="form-label">Anticipo</label>
+            <input type="text" class="form-control" placeholder="Ingrese el anticipo" name="anticipo" id="anticipo"
+              th:value="${liquidacion.getAnticipo()}" required>
+          </div>
+          <div class="mb-3">
+            <label for="sueldoLiquido" class="form-label">Sueldo Liquido (Total Haberes - Total Descuentos -
+              Anticipo)</label>
+            <input type="text" class="form-control" placeholder="Total Haberes - Total Descuentos - Anticipo"
+              name="sueldoLiquido" th:value="${liquidacion.getSueldoLiquido}" id="sueldoLiquido" required>
+          </div>
+          <div class="mb-3 mt-5">
+            <input type="submit" class="btn btn-lg btn-dark" value="Editar">
+          </div>
+        </form>
+
         <!-- Fin Crear Usuario -->
         <!-- Inicio Footer -->
         <footer th:include="~{../static/footer.html}"></footer>
         <!-- Fin Footer -->
+      </div>
+      <!-- Fin Container -->
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
     </div>
-    <!-- Fin Container -->
+  </div>
+</body>
+
+</html>

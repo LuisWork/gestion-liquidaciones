@@ -12,12 +12,13 @@ import java.util.List;
 public class UsuarioRestController {
     @Autowired
     IUsuarioService objUsuarioService;
-
     @PostMapping
-    public Usuario crearUsuario(@RequestBody Usuario usuario) { return objUsuarioService.crearUsuario(usuario); }
+    public Usuario crearUsuario(@RequestBody Usuario usuario){
+        return objUsuarioService.crearUsuario(usuario);
+    }
 
     @PostMapping("/registrar")
-    public Usuario registrarUsuario(@RequestBody Usuario usuario) {
+    public Usuario registrarUsuario(@RequestBody Usuario usuario){
         return objUsuarioService.registrarUsuario(usuario);
     }
 
@@ -25,15 +26,18 @@ public class UsuarioRestController {
     public Usuario buscarUsuarioPorId(@PathVariable int idUsuario){
         return objUsuarioService.buscarUsuarioPorId(idUsuario);
     }
-
     @GetMapping
-    public List<Usuario> listarUsuario(){ return objUsuarioService.listarUsuarios(); }
-
+    public List<Usuario> listarUsuarios(){
+        return objUsuarioService.listarUsuarios();
+    }
     @PutMapping("/{idUsuario}")
     public Usuario actualizarUsuario(@RequestBody Usuario usuarioActualizar, @PathVariable int idUsuario){
-        return objUsuarioService.actualizarUsuario(usuarioActualizar, idUsuario);
+        return objUsuarioService.actualizarUsuario(usuarioActualizar,idUsuario);
     }
 
+
     @DeleteMapping("/{idUsuario}")
-    public void eliminarUsuario2(@PathVariable int idUsuario) { objUsuarioService.eliminarUsuario2(idUsuario); }
+    public void eliminarUsuario2(@PathVariable int idUsuario){
+        objUsuarioService.eliminarUsuario2(idUsuario);
+    }
 }
