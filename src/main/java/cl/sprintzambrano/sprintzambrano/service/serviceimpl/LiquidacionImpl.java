@@ -5,7 +5,6 @@ import cl.sprintzambrano.sprintzambrano.entity.InstitucionSalud;
 import cl.sprintzambrano.sprintzambrano.entity.Liquidacion;
 import cl.sprintzambrano.sprintzambrano.repository.ILiquidacionRepo;
 import cl.sprintzambrano.sprintzambrano.service.ILiquidacionService;
-import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
